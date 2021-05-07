@@ -7,15 +7,17 @@ import { CartService } from '../cart.service';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent {
+  constructor(
+    private cartService: CartService,
+    private formBuilder: FormBuilder,
+    ) {}
+    
   items = this.cartService.getItems();
   checkoutForm = this.formBuilder.group({
     name: '',
     address: ''
   });
-  constructor(
-    private cartService: CartService,
-    private formBuilder: FormBuilder,
-    ) {}
+  
   onSubmit(): void {
     // Process checkout data here
     this.items = this.cartService.clearCart();
